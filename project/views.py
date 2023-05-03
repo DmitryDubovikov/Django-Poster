@@ -7,3 +7,10 @@ def main(request):
     context = {}
     rendered_page = template.render(context, request)
     return HttpResponse(rendered_page)
+
+
+def index(request):
+    template = loader.get_template("index.html")
+    context = {}
+    rendered_page = template.render(context, request)
+    return HttpResponse(rendered_page)
