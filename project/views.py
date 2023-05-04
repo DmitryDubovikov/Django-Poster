@@ -1,6 +1,7 @@
 import copy
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
+from django.shortcuts import get_object_or_404
 from places.models import Place
 
 
@@ -34,3 +35,18 @@ def index(request):
     context = {"places_data": places_data}
     rendered_page = template.render(context, request)
     return HttpResponse(rendered_page)
+
+
+def place(request, pk=None):
+    obj = get_object_or_404(Place, pk=pk)
+    data_dict = {
+        "title": obj.title,
+        "imgs": [],
+        "description_short": obj.description_short,
+        "description_long": obj.description_long,
+        "coordinates": {"lng": obj.lng, "lat": obj.lat},
+    }
+    images = obj.images.all()
+    for im in images:
+        data_dict["imgs"].append(im.image.url)
+    return JsonResponse(data_dict)
