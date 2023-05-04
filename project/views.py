@@ -2,6 +2,7 @@ import copy
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from places.models import Place
 
 
@@ -28,7 +29,10 @@ def index(request):
         new_feature["geometry"]["coordinates"][0] = place.lng
         new_feature["geometry"]["coordinates"][1] = place.lat
         new_feature["properties"]["title"] = place.title
-        new_feature["properties"]["placeId"] = "placeId" + str(i)
+        new_feature["properties"]["placeId"] = "placeId" + str(place.id)
+        new_feature["properties"]["detailsUrl"] = reverse(
+            "place-detail", kwargs={"pk": place.id}
+        )
         features.append(new_feature)
 
     places_data = {"type": "FeatureCollection", "features": features}
