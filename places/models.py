@@ -19,4 +19,4 @@ class Image(models.Model):
     place = models.ForeignKey(Place, related_name="images", on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.title
+        return f"#{self.order} of {self.place.title}"

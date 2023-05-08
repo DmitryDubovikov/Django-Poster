@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from project.views import index, place
+from places.views import index, place
 
 
 urlpatterns = [

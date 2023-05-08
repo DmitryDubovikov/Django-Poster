@@ -8,6 +8,9 @@ from .models import Place, Image
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     readonly_fields = ["image_preview"]
+    ordering = [
+        "order",
+    ]
 
     def image_preview(self, obj):
         return format_html(
@@ -23,6 +26,9 @@ class ImageInline(admin.TabularInline):
     model = Image
 
     readonly_fields = ["image_preview"]
+    ordering = [
+        "order",
+    ]
 
     def image_preview(self, obj):
         return format_html(
