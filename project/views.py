@@ -10,7 +10,6 @@ def index(request):
     template = loader.get_template("index.html")
 
     features = []
-    i = 0
     feature_template = {
         "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [1, 1]},
@@ -24,7 +23,6 @@ def index(request):
     places = Place.objects.all()
 
     for place in places:
-        i += 1
         new_feature = copy.deepcopy(feature_template)
         new_feature["geometry"]["coordinates"][0] = place.lng
         new_feature["geometry"]["coordinates"][1] = place.lat
