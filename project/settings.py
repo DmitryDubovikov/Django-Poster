@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # external apps
     "tinymce",
+    "adminsortable2",
     # internal apps
     "places.apps.PlacesConfig",
 ]

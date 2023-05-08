@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
-
-# Register your models here.
+from adminsortable2.admin import SortableAdminMixin
 from .models import Place, Image
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
+class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     readonly_fields = ["image_preview"]
     ordering = [
         "order",
@@ -22,7 +21,7 @@ class ImageAdmin(admin.ModelAdmin):
         )
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableAdminMixin, admin.TabularInline):
     model = Image
 
     readonly_fields = ["image_preview"]
