@@ -21,9 +21,13 @@ from django.conf.urls.static import static
 from places.views import index, place
 
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", index),
-    path("places/<int:pk>/", place, name="place-detail"),
-    path("tinymce/", include("tinymce.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", index),
+        path("places/<int:pk>/", place, name="place-detail"),
+        path("tinymce/", include("tinymce.urls")),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
