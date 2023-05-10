@@ -15,20 +15,11 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("url", type=str, help="url for json file")
 
-    # def get_json_url(self):
-    #     return apps.get_app_config("places").path
-
     def handle(self, *args, **options):
         url = options["url"]
         with requests.get(url) as response:
-            print(response)
-            print(json.loads(response.content))
-
-            # data = json.loads(response.read())
-            # data = json.loads(response.json())
-            data = [1, 2]
+            data = json.loads(response.json())
         for item in data:
-            print(item)
-            # obj = Place(**item)
-            # obj.save()
+            obj = Place(**item)
+            obj.save()
         self.stdout.write(self.style.SUCCESS("Data loaded successfully"))
