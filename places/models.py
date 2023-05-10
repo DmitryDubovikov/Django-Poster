@@ -14,7 +14,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    order = models.PositiveSmallIntegerField()
+    order = models.PositiveSmallIntegerField(default=0)
     image = models.ImageField()
     place = models.ForeignKey(Place, related_name="images", on_delete=models.CASCADE)
 
