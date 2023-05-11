@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 
-# from django.apps import apps
 import json
 import requests
 from places.models import Place, Image

@@ -13,7 +13,7 @@ class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
 
     def image_preview(self, obj):
         return format_html(
-            '<img src="{url}" width="{width}" height={height} />'.format_html(
+            '<img src="{url}" width="{width}" height={height} />'.format(
                 url=obj.image.url,
                 width=200,
                 height=200,
@@ -31,7 +31,7 @@ class ImageInline(SortableAdminMixin, admin.TabularInline):
 
     def image_preview(self, obj):
         return format_html(
-            '<img src="{url}" width="{width}" height={height} />'.format_html(
+            '<img src="{url}" width="{width}" height={height} />'.format(
                 url=obj.image.url,
                 width=200,
                 height=200,
